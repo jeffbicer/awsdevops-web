@@ -9,9 +9,8 @@ import Errors from '../notifications/Errors'
 import { widgetCreate, widgetRequest } from './actions'
 
 // Our validation function for `name` field.
-const nameRequired = value => (value ? undefined : 'Name Required')
 
-class Widgets extends Component {
+export class Widgets extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
@@ -35,6 +34,8 @@ class Widgets extends Component {
     // call the fetch when the component starts up
     this.fetchWidgets()
   }
+
+  nameRequired = value => (value ? undefined : 'Name Required')
 
   // the helper function for requesting widgets
   // with our client as the parameter
@@ -64,7 +65,6 @@ class Widgets extends Component {
         If the form has been touched AND is in error, show `error`.
         `error` is the message returned from our validate function above
         which in this case is `Name Required`.
-
         `touched` is a live updating property that RF passes in.  It tracks
         whether or not a field has been "touched" by a user.  This means
         focused at least once.
@@ -109,7 +109,7 @@ class Widgets extends Component {
               id="name"
               className="name"
               component={this.renderNameInput}
-              validate={nameRequired}
+              validate={this.nameRequired}
             />
             <label htmlFor="description">Description</label>
             <Field
@@ -181,7 +181,7 @@ class Widgets extends Component {
 }
 
 // Pull in both the Client and the Widgets state
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   client: state.client,
   widgets: state.widgets,
 })
