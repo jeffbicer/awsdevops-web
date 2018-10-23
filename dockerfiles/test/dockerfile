@@ -126,5 +126,5 @@ RUN set -x \
         && apt-get install -y yarn=0.23.4-1 \
         && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* \
         && apt-get clean
-        
+
 VOLUME /var/lib/docker
