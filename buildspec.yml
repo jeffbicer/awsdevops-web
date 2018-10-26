@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - chmod +x ./dockerd-entrypoint.sh
+      - chmod +x ./usr/local/bin/dockerd-entrypoint.sh
       - . /usr/local/bin/dockerd-entrypoint.sh
       - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
       - echo Installing dependencies
